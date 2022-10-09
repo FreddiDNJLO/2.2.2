@@ -5,12 +5,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.service.CarService;
-import web.service.CarServiceImp;
 
 @Controller
 public class ContrCar {
 
-    private CarService carService = new CarServiceImp();
+    private final CarService carService;
+
+    public ContrCar(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping("/cars")
     public String printCars(@RequestParam(value = "count", required = false) String count, Model model) {
